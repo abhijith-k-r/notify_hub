@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/constants/app_spacing.dart';
 import '../../../../core/widgets/app_scaffold.dart';
+import '../../view_model/bottom_nav_cubit.dart';
 import '../widgets/category_grid.dart';
 import '../widgets/craze_deals_banner.dart';
 import '../widgets/home_bottom_nav.dart';
 import '../widgets/home_header.dart';
 import '../widgets/home_search_bar.dart';
+import '../widgets/nearby_stores_section.dart';
 import '../widgets/promo_banner.dart';
 import '../widgets/refer_earn_banner.dart';
 import '../widgets/trending_section.dart';
@@ -16,6 +19,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<BottomNavCubit>().changeTab(0);
+    });
+
     return const AppScaffold(
       bottomNavigationBar: HomeBottomNav(),
       body: SingleChildScrollView(
@@ -36,6 +43,8 @@ class HomeScreen extends StatelessWidget {
             CrazeDealsBanner(),
             AppSpacing.gapH20,
             ReferEarnBanner(),
+            AppSpacing.gapH24,
+            NearbyStoresSection(),
             AppSpacing.gapH32,
           ],
         ),

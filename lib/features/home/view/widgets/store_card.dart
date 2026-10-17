@@ -24,59 +24,69 @@ class StoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 260,
-      decoration: BoxDecoration(
-        color: AppColors.surfaceLight,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      padding: const EdgeInsets.all(8),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: const AppImage(
-              path: AppAssets.storeMithas,
-              width: 74,
-              height: 74,
-              fit: BoxFit.cover,
-            ),
-          ),
-          AppSpacing.gapW12,
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  name,
-                  style: AppTypography.titleSmall.copyWith(fontSize: 14),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                AppSpacing.gapH2,
-                Text(cuisine, style: AppTypography.caption, maxLines: 1),
-                AppSpacing.gapH2,
-                Text(distance, style: AppTypography.caption, maxLines: 1),
-                AppSpacing.gapH4,
-                Row(
-                  children: [
-                    const Icon(Icons.star_rounded, color: AppColors.starRating, size: 16),
-                    AppSpacing.gapW4,
-                    Flexible(
-                      child: Text(
-                        '$rating  |  $eta',
-                        style: AppTypography.caption.copyWith(fontWeight: FontWeight.bold),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        storeCardContainer(),
+        AppSpacing.gapH8,
+        storeCardContainer(),
+      ],
     );
+  }
+
+  Container storeCardContainer() {
+    return Container(
+    width: 260,
+    decoration: BoxDecoration(
+      color: AppColors.surfaceLight,
+      borderRadius: BorderRadius.circular(8),
+    ),
+    padding: const EdgeInsets.all(8),
+    child: Row(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(6),
+          child: const AppImage(
+            path: AppAssets.storeMithas,
+            width: 74,
+            height: 74,
+            fit: BoxFit.cover,
+          ),
+        ),
+        AppSpacing.gapW12,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                name,
+                style: AppTypography.titleSmall.copyWith(fontSize: 14),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              AppSpacing.gapH2,
+              Text(cuisine, style: AppTypography.caption, maxLines: 1),
+              AppSpacing.gapH2,
+              Text(distance, style: AppTypography.caption, maxLines: 1),
+              AppSpacing.gapH4,
+              Row(
+                children: [
+                  const Icon(Icons.star_rounded, color: AppColors.starRating, size: 16),
+                  AppSpacing.gapW4,
+                  Flexible(
+                    child: Text(
+                      '$rating  |  $eta',
+                      style: AppTypography.caption.copyWith(fontWeight: FontWeight.bold),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
   }
 }

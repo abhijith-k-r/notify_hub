@@ -40,57 +40,57 @@ class HomeHeader extends StatelessWidget {
                   ],
                 ),
               ),
-              _buildNotificationBell(context, state.unreadNotificationsCount),
+              // buildNotificationBell(context, state.unreadNotificationsCount),
             ],
           ),
         );
       },
     );
   }
+}
 
-  Widget _buildNotificationBell(BuildContext context, int unreadCount) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(20),
-      onTap: () => context.push(AppRoutes.notifications),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: AppColors.surfaceLight,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: const Icon(
-              Icons.notifications_outlined,
-              color: AppColors.textPrimary,
-              size: 24,
-            ),
+Widget buildNotificationBell(BuildContext context, int unreadCount) {
+  return InkWell(
+    borderRadius: BorderRadius.circular(20),
+    onTap: () => context.push(AppRoutes.notifications),
+    child: Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            // color: AppColors.surfaceLight,
+            borderRadius: BorderRadius.circular(10),
           ),
-          if (unreadCount > 0)
-            Positioned(
-              right: 4,
-              top: 4,
-              child: Container(
-                padding: const EdgeInsets.all(4),
-                decoration: const BoxDecoration(
-                  color: AppColors.badgeRed,
-                  shape: BoxShape.circle,
+          child: const Icon(
+            Icons.notifications_outlined,
+            color: AppColors.badgeRed,
+            size: 30,
+          ),
+        ),
+        if (unreadCount > 0)
+          Positioned(
+            right: 7,
+            top: 4,
+            child: Container(
+              padding: const EdgeInsets.all(4),
+              decoration: const BoxDecoration(
+                color: AppColors.badgeRed,
+                shape: BoxShape.circle,
+              ),
+              constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
+              child: Text(
+                '$unreadCount',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
                 ),
-                constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
-                child: Text(
-                  '$unreadCount',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
+                textAlign: TextAlign.center,
               ),
             ),
-        ],
-      ),
-    );
-  }
+          ),
+      ],
+    ),
+  );
 }

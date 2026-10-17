@@ -8,6 +8,7 @@ class AppImage extends StatelessWidget {
   final double? height;
   final BoxFit fit;
   final BorderRadius? borderRadius;
+  final Color? color;
 
   const AppImage({
     super.key,
@@ -16,6 +17,7 @@ class AppImage extends StatelessWidget {
     this.height,
     this.fit = BoxFit.cover,
     this.borderRadius,
+    this.color
   });
 
   @override
@@ -28,6 +30,7 @@ class AppImage extends StatelessWidget {
         width: width,
         height: height,
         fit: fit,
+        color: color,
         errorBuilder: (context, error, stackTrace) => _buildFallback(),
       );
     } else {
@@ -36,6 +39,7 @@ class AppImage extends StatelessWidget {
         width: width,
         height: height,
         fit: fit,
+        color: color,
         errorBuilder: (context, error, stackTrace) => _buildFallback(),
       );
     }

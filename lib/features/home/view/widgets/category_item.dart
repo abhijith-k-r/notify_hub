@@ -6,7 +6,8 @@ import '../../../../core/constants/app_typography.dart';
 /// Single category square item with icon and label.
 class CategoryItem extends StatelessWidget {
   final String label;
-  final IconData icon;
+  final String icon;
+  final double? scale;
   final String? badge;
   final VoidCallback? onTap;
 
@@ -14,6 +15,7 @@ class CategoryItem extends StatelessWidget {
     super.key,
     required this.label,
     required this.icon,
+    this.scale,
     this.badge,
     this.onTap,
   });
@@ -39,16 +41,20 @@ class CategoryItem extends StatelessWidget {
                     color: AppColors.divider.withValues(alpha: 0.5),
                   ),
                 ),
-                child: Icon(icon, color: AppColors.primary, size: 28),
+                child: Image.asset(icon, scale:scale,),
+                // Icon(icon, color: AppColors.primary, size: 28),
               ),
               if (badge != null)
                 Positioned(
-                  top: -6,
-                  right: -4,
+                  top: 0,
+                  right: 0,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 5,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
-                      color: AppColors.accentOrange,
+                      color: AppColors.purplePromo,
                       borderRadius: BorderRadius.circular(4),
                     ),
                     child: Text(

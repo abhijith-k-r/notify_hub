@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'core/constants/app_colors.dart';
 import 'core/widgets/app_toast.dart';
 import 'features/home/view_model/bottom_nav_cubit.dart';
@@ -12,8 +13,21 @@ void main() {
   runApp(const NotifyHubApp());
 }
 
-class NotifyHubApp extends StatelessWidget {
+class NotifyHubApp extends StatefulWidget {
   const NotifyHubApp({super.key});
+
+  @override
+  State<NotifyHubApp> createState() => _NotifyHubAppState();
+}
+
+class _NotifyHubAppState extends State<NotifyHubApp> {
+  late final GoRouter _router;
+
+  @override
+  void initState() {
+    super.initState();
+    _router = AppRouter.createRouter();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +55,7 @@ class NotifyHubApp extends StatelessWidget {
             primary: AppColors.primary,
           ),
         ),
-        routerConfig: AppRouter.router,
+        routerConfig: _router,
       ),
     );
   }
