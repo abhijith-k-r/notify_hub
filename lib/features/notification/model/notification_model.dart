@@ -1,37 +1,65 @@
-import 'package:equatable/equatable.dart';
+// To parse this JSON data, do
+//
+//     final notificationModel = notificationModelFromJson(jsonString);
 
-/// Immutable Notification entity representing parsed notification data.
-class NotificationModel extends Equatable {
+
+import 'dart:convert';
+
+NotificationModel notificationModelFromJson(String str) =>
+    NotificationModel.fromJson(json.decode(str));
+
+String notificationModelToJson(NotificationModel data) =>
+    json.encode(data.toJson());
+
+class NotificationModel {
+  final String message;
+  final List<Datum> data;
+  final bool success;
+
+  NotificationModel({
+    required this.message,
+    required this.data,
+    required this.success,
+  });
+
+  factory NotificationModel.fromJson(Map<String, dynamic> json) =>
+      NotificationModel(
+        message: json["message"],
+        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        success: json["success"],
+      );
+
+  Map<String, dynamic> toJson() => {
+    "message": message,
+    "data": List<dynamic>.from(data.map((x) => x.toJson())),
+    "success": success,
+  };
+}
+
+class Datum {
   final String image;
   final String title;
   final String body;
   final String timestamp;
 
-  const NotificationModel({
+  Datum({
     required this.image,
     required this.title,
     required this.body,
     required this.timestamp,
   });
 
-  factory NotificationModel.fromJson(Map<String, dynamic> json) {
-    return NotificationModel(
-      image: json['image'] as String? ?? '',
-      title: json['title'] as String? ?? '',
-      body: json['body'] as String? ?? '',
-      timestamp: json['timestamp'] as String? ?? '',
-    );
-  }
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+    image: json["image"],
+    title: json["title"],
+    body: json["body"],
+    timestamp: json["timestamp"],
+  );
 
-  Map<String, dynamic> toJson() {
-    return {
-      'image': image,
-      'title': title,
-      'body': body,
-      'timestamp': timestamp,
-    };
-  }
-
-  @override
-  List<Object?> get props => [image, title, body, timestamp];
+  Map<String, dynamic> toJson() => {
+    "image": image,
+    "title": title,
+    "body": body,
+    "timestamp": timestamp,
+  };
 }

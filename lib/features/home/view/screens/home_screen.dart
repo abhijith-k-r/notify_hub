@@ -13,7 +13,6 @@ import '../widgets/promo_banner.dart';
 import '../widgets/refer_earn_banner.dart';
 import '../widgets/trending_section.dart';
 
-/// Primary Home Screen assembling modular components into a smooth scrollable feed.
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 

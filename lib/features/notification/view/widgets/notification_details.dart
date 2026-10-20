@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:notify_hub/features/notification/model/notification_model.dart';
 import '../../../../core/constants/app_spacing.dart';
 import '../../../../core/constants/app_typography.dart';
 import '../../../../core/utils/date_time_formatter.dart';
-import '../../model/notification_model.dart';
 
 /// Renders the title, multiline description, and timestamp of a notification.
 class NotificationDetails extends StatelessWidget {
-  final NotificationModel notification;
+  final Datum  notification;
 
   const NotificationDetails({
     super.key,

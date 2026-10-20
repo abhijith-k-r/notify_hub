@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:notify_hub/features/notification/model/notification_model.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_spacing.dart';
-import '../../model/notification_model.dart';
 import 'notification_details.dart';
 import 'notification_icon.dart';
 
 /// Single notification card item matching Figma layout.
 class NotificationTile extends StatelessWidget {
-  final NotificationModel notification;
+  final Datum  notification;
   final VoidCallback? onTap;
 
   const NotificationTile({

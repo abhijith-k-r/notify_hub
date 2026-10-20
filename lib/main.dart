@@ -5,7 +5,6 @@ import 'core/constants/app_colors.dart';
 import 'core/widgets/app_toast.dart';
 import 'features/home/view_model/bottom_nav_cubit.dart';
 import 'features/home/view_model/home_cubit.dart';
-import 'features/notification/view_model/notification_cubit.dart';
 import 'routes/app_router.dart';
 
 void main() {
@@ -13,35 +12,20 @@ void main() {
   runApp(const NotifyHubApp());
 }
 
-class NotifyHubApp extends StatefulWidget {
+class NotifyHubApp extends StatelessWidget {
   const NotifyHubApp({super.key});
 
-  @override
-  State<NotifyHubApp> createState() => _NotifyHubAppState();
-}
 
-class _NotifyHubAppState extends State<NotifyHubApp> {
-  late final GoRouter _router;
-
-  @override
-  void initState() {
-    super.initState();
-    _router = AppRouter.createRouter();
-  }
 
   @override
   Widget build(BuildContext context) {
+    final GoRouter router = AppRouter.createRouter();
+   
     return MultiBlocProvider(
       providers: [
-        BlocProvider<BottomNavCubit>(
-          create: (_) => BottomNavCubit(),
-        ),
-        BlocProvider<HomeCubit>(
-          create: (_) => HomeCubit(),
-        ),
-        BlocProvider<NotificationCubit>(
-          create: (_) => NotificationCubit(),
-        ),
+        BlocProvider<BottomNavCubit>(create: (_) => BottomNavCubit()),
+        BlocProvider<HomeCubit>(create: (_) => HomeCubit()),
+       
       ],
       child: MaterialApp.router(
         title: 'NotifyHub',
@@ -55,7 +39,7 @@ class _NotifyHubAppState extends State<NotifyHubApp> {
             primary: AppColors.primary,
           ),
         ),
-        routerConfig: _router,
+        routerConfig: router,
       ),
     );
   }
