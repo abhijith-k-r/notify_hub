@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_typography.dart';
 
@@ -36,19 +37,27 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
         centerTitle: false,
         titleSpacing: showBackButton ? 0 : 20,
         leading: showBackButton
-            ? IconButton(
-                icon: const Icon(
-                  Icons.arrow_back_ios_new_rounded,
-                  size: 20,
-                  color: AppColors.textPrimary,
+            ? Center(
+                child: Container(
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryLight,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      size: 20,
+                      color: AppColors.divider,
+                    ),
+                    onPressed: onBack ?? () => context.pop(),
+                  ),
                 ),
-                onPressed: onBack ?? () => Navigator.of(context).maybePop(),
               )
             : null,
-        title: Text(
-          title,
-          style: AppTypography.titleMedium,
-        ),
+        title: Text(title, style: AppTypography.titleMedium),
         actions: actions,
       ),
     );

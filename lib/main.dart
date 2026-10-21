@@ -15,17 +15,13 @@ void main() {
 class NotifyHubApp extends StatelessWidget {
   const NotifyHubApp({super.key});
 
-
-
+  static final GoRouter router = AppRouter.createRouter();
   @override
   Widget build(BuildContext context) {
-    final GoRouter router = AppRouter.createRouter();
-   
     return MultiBlocProvider(
       providers: [
         BlocProvider<BottomNavCubit>(create: (_) => BottomNavCubit()),
         BlocProvider<HomeCubit>(create: (_) => HomeCubit()),
-       
       ],
       child: MaterialApp.router(
         title: 'NotifyHub',
