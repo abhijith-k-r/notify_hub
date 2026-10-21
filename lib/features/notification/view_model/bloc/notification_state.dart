@@ -16,11 +16,12 @@ class NotificationState extends Equatable {
     NotificationStatus? status,
     List<Datum>? notifications,
     String? errorMassage,
+    bool clearError = false,
   }) {
     return NotificationState(
       status: status ?? this.status,
       notifications: notifications ?? this.notifications,
-      errorMassage: errorMassage ?? this.errorMassage,
+      errorMassage: clearError ? null : errorMassage ?? this.errorMassage,
     );
   }
 

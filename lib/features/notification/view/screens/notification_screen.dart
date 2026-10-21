@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notify_hub/core/constants/app_colors.dart';
 import 'package:notify_hub/core/widgets/app_app_bar.dart';
+import 'package:notify_hub/core/widgets/app_button.dart';
 import 'package:notify_hub/core/widgets/app_scaffold.dart';
 import 'package:notify_hub/features/notification/data/notification_api_services.dart';
 import 'package:notify_hub/features/notification/data/notification_repository.dart';
@@ -29,8 +31,32 @@ class NotificationScreen extends StatelessWidget {
 
             if (state.status == NotificationStatus.failure) {
               return Center(
-                child: Text(
-                  state.errorMassage ?? 'Failed to load notifications',
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.error_outline,
+                        size: 48,
+                        color: AppColors.badgeRed,
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        state.errorMassage ?? 'Failed to load notifications',
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 16),
+                      AppButton(
+                        label: 'Retry',
+                        onPressed: () {
+                          context.read<NotificationBloc>().add(
+                            const FetchNotifications(),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               );
             }

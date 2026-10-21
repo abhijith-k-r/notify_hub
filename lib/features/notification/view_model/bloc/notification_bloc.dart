@@ -17,9 +17,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     NotificationEvent event,
     Emitter<NotificationState> emit,
   ) async {
-    emit(
-      state.copyWith(status: NotificationStatus.loading, errorMassage: null),
-    );
+    emit(state.copyWith(status: NotificationStatus.loading, clearError: true));
 
     try {
       final result = await _repository.fetchNotifications();
@@ -28,7 +26,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
         state.copyWith(
           status: NotificationStatus.sucess,
           notifications: result.data,
-          errorMassage: null,
+          clearError: true,
         ),
       );
     } catch (e) {
